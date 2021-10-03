@@ -1,0 +1,635 @@
+<!{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="{% static 'css/style_form.css' %}" />
+	<script type="text/javascript" charset="utf8" src="{% static 'datatables/jquery-3.5.1.js' %}"></script>
+</head>	
+<body>
+
+<div class="draw_field">
+<table class="table_" style="display:table;">
+	<tr class="sheet_name" > 
+		<td colspan="2"> 
+			{%if new is 1 %}				
+			<img src={% static 'img/pencil.png' %}> Editing new record 
+			{% else %}
+			<img src={% static 'img/pencil.png' %}> Editing existing record ID {{form.instance.id}} 
+			{%  endif  %}
+		</td>
+	</tr>
+	<tr class="table_string">
+		<td class="table_string_left"> <a> Record ID </a> </td>
+		<td class="table_string_right"> <label> {{form.instance.id}} </label> </td>
+	</tr>
+	<tr class="table_name" > 
+		<td colspan="2"> <a> ПРИЕМ </a></td>
+	</tr>
+	<form  method="post" >
+			{%csrf_token%}
+			<tr class="table_string"> 
+				<td class="table_string_left"><a> Наименование визита</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.name_visit}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a> ФИО пациента</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.patient_key}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a> ФИО доктора</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.doctor_key}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a> Дата визита</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.date}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Возраст</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.age_visit}}</a> 
+				</td>	
+			</tr>
+		
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>inform_consent</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.inform_consent}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>comply_all_study</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.comply_all_study}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>female_age</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.female_age}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>current_preg_lact</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.current_preg_lact}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>history_hysterectomy</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.history_hysterectomy}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>risk_no_compliance</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.risk_no_compliance}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>unwillingness</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.unwillingness}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>medicince_listed_now_10</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.medicince_listed_now_10}}</a> 
+				</td>	
+			</tr>
+
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>medicince_listed_3month_10</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.medicince_listed_3month_10}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>PCOS</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.PCOS}}</a> 
+				</td>	
+			</tr>
+
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Exclusion</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.Exclusion}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Grey</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.Grey}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Phenotype</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.Phenotype}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>PCOS_text</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.PCOS_text}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Exclusion_text</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.Exclusion_text}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_name" > 
+				<td colspan="2"> <a>Form status</a> </td>
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a></a> 
+				</td>	
+				<td class="table_string_right"><input type="submit" >
+				</td>
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a></a> 
+				</td>
+			
+				<td class="table_string_right">	<button type="cancel" style="width:80px" onclick="window.location='/view_full/'+{{patient_key}};return false;">--Cancel--</button>
+				</td>
+					
+			</tr>
+			<!--*****************************************-->
+			<tr class="table_name" > 
+				<td colspan="2"> <a>Диагностика СПКЯ:</a> 
+					<a class="result" id="theResult"></a>
+				</td>
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a></a> 
+				</td>	
+				<td class="table_string_right">
+					<input type="button" method="GET" onclick="CheckPCOS({{patient_key}},{{form.instance.id}})" style="width:85px" value="Анализ">
+				</td>
+			</tr>
+	</form>
+</table>
+</div>
+<script>	
+
+function CheckPCOS(patient_key, visit_key) 
+  {
+ $.ajax({  
+ 	url: "/execute_query",
+ 	type: "GET", 
+ 	data: {'patient_key' : patient_key, 
+          'visit_key' : visit_key },
+ 	success: function(result){
+  			add_text=""
+				ethnicity_					=result.ethnicity
+				//	//Visit
+				//	//GYNECOLOGIC REVIEW
+				periods_					=result.periods
+				type_menstrual_disorders___1_=result.type_menstual_disorders_1
+				type_menstrual_disorders___2_=result.type_menstual_disorders_2
+				type_menstrual_disorders___3_=result.type_menstual_disorders_3
+				type_menstrual_disorders___4_=result.type_menstual_disorders_4
+				min_menstrual_				=result.min_menstrual
+				max_menstrual_				=result.max_menstrual
+				sum_physician_				=result.sum_physician
+					//Ultrasound
+					//Pelvic ultrasound - (total)
+				right_ovary_volume_			=result.right_ovary_volume
+				right_ovary_follicle_		=result.right_ovary_follicle
+				diameter_cyst_right_ovary_	=result.diameter_cyst_right
+				left_ovary_volume_			=result.left_ovary_volume
+				left_ovary_follicle_		=result.left_ovary_follicle
+				diameter_cyst_left_			=result.diameter_cyst_left
+				
+					//Laboratory
+					//Hormone Laboratory
+					value_testosteron_			=result.value_testosteron
+					value_shbg_					=result.value_shbg
+					value_dheas_				=result.value_dheas
+					value_tsh_					=result.value_tsh
+					day_mens_prl_				=result.day_mens_prl
+					value_17hp_					=result.value_17hp
+					value_prl_					=result.value_prl
+
+					//Consent
+					age_visit1_					=result.age_visit1
+					inform_consent_				=result.inform_consent
+					comply_all_study_			=result.comply_all_study
+					female_age_					=result.female_age 
+					current_preg_lact_			=result.current_preg_lact 
+					history_hysterectomy_		=result.history_hysterectomy
+					risk_no_compliance_			=result.risk_no_compliance
+					unwillingness_				 =result.unwillingness
+					medicince_listed_now___10_	 =result.medicince_listed_now___10
+					medicince_listed_3month___10_=result.medicince_listed_3month___10
+
+				if (inform_consent_!=null && comply_all_study_!=null && female_age_!=null && current_preg_lact_!=null && history_hysterectomy_!=null &&
+					risk_no_compliance_!=null && unwillingness_!=null && medicince_listed_now___10_!=null &&medicince_listed_3month___10_!=null)
+					{
+					if ( inform_consent_==true && comply_all_study_==true && female_age_==true && current_preg_lact_==false && history_hysterectomy_==false &&
+						risk_no_compliance_==false && unwillingness_==false && medicince_listed_now___10_==true && medicince_listed_3month___10_==true)
+						{
+							included=true
+						}
+					}
+					if (included==true) 
+					{
+						if (periods_!=null)
+						{
+							if (periods_==2 || periods_==1) 
+							{
+								if (type_menstrual_disorders___1_==1 || type_menstrual_disorders___2_==1 ||
+							    	type_menstrual_disorders___3_==1 || type_menstrual_disorders___4_==1)
+								{
+									OA=1
+								}
+							}
+			 			}
+						if (min_menstrual_!=null)
+						{
+							if (min_menstrual_<21) 
+							{
+								OA=1
+							} 
+						}
+						if (max_menstrual_!=null)
+						{
+							if (max_menstrual_>35) 
+							{
+								OA=1
+							} 
+						}
+						if (periods_!=null)
+						{
+							if (periods_==2 || periods_==1) 
+							{
+								if (type_menstrual_disorders___1_==0 && type_menstrual_disorders___2_==0 &&
+							    	type_menstrual_disorders___3_==0 && type_menstrual_disorders___4_==0)
+								{
+									if (min_menstrual_!=null)
+									{
+										if (min_menstrual_>=21) 
+										{
+											if (max_menstrual_!=null)
+											{
+												if (max_menstrual_<=35) 
+												{
+													OA=0
+												} 
+											}
+										} 
+									}
+								}
+						
+							}
+			 			}
+
+						//***************************************************
+						PCOM_right=991
+						PCOM_left=991
+						right_ovary_volume=0
+						right_ovary_follicle=0
+						PCOM=null
+						if (right_ovary_volume_!=null)
+						{
+							right_ovary_volume=right_ovary_volume_
+						}
+						if (right_ovary_follicle_!=null)
+						{
+							right_ovary_follicle=right_ovary_follicle_
+						}
+						if (diameter_cyst_right_ovary_!=null)
+						{
+							if (right_ovary_volume>=10 || right_ovary_follicle>=12)  
+							{
+								if (diameter_cyst_right_ovary_<=9) 
+								{   
+									PCOM_right=1
+								}
+								else
+								{   
+									PCOM="некорректные данные УЗИ:diameter_cyst_right_ovary>9"
+								}
+							}
+			 			}
+						if (right_ovary_volume_!=null && right_ovary_follicle_==null)
+						{
+							add_text="ошибка right 1"
+						}
+						if (right_ovary_volume_==null && right_ovary_follicle_!=null)
+						{
+							add_text="ошибка right 2"
+						}
+						if (right_ovary_volume_==null  && right_ovary_follicle_==null && diameter_cyst_right_ovary_!=null)
+						{
+							add_text="ошибка right 3"
+						} 
+						left_ovary_volume=0
+						left_ovary_follicle=0
+						if (left_ovary_volume_!=null)
+						{
+							left_ovary_volume=left_ovary_volume_
+						}
+						if (left_ovary_follicle_!=null)
+						{
+							left_ovary_follicle=left_ovary_follicle_
+						}
+						if (diameter_cyst_left_!=null)
+						{
+							if (left_ovary_volume>=10 || left_ovary_follicle>=12)  
+							{
+								if (diameter_cyst_left_<=9) 
+								{   
+									PCOM_left=1
+								}
+								else
+								{   
+									PCOM="некорректные данные УЗИ:diameter_cyst_left>9"
+								}
+							}
+			 			}
+						if (left_ovary_volume_!=null && left_ovary_follicle_==null)
+						{
+							add_text="ошибка left 1"
+						}
+						if (left_ovary_volume_==null && left_ovary_follicle_!=null)
+						{
+							add_text="ошибка left 2"
+						}
+						if (left_ovary_volume_==null && left_ovary_follicle_==null && diameter_cyst_left_!=null)
+						{
+							add_text="ошибка left 3"
+						}
+						if (PCOM_right==1 || PCOM_left==1)
+						{
+							PCOM=1
+						}	
+						if (right_ovary_volume_!=null && right_ovary_follicle_!=null && diameter_cyst_right_ovary_!=null)
+						{
+							if (right_ovary_volume_<10 && right_ovary_follicle_<12)  
+							{
+								if (diameter_cyst_right_ovary_<=9) 
+								{   
+									PCOM_right=0
+								}
+							}
+						}
+						if (left_ovary_volume_!=null && left_ovary_follicle_!=null && diameter_cyst_left_!=null)
+						{
+							if (left_ovary_volume_<10 && left_ovary_follicle_<12)  
+							{
+								if (diameter_cyst_left_<=9) 
+								{   
+									PCOM_left=0
+								}
+							}
+			 			}
+						if (PCOM_right==0 && PCOM_left==0)
+						{
+							PCOM=0
+						}	
+						
+						//************************************************************************************
+						H=null
+						if (ethnicity_==null)			
+						{
+							krit_testosteron=67.34
+							krit_IFA=5.42
+						}
+						else
+						{
+							race=ethnicity_
+							if (race==1)
+							{
+								krit_testosteron=73.9
+								krit_IFA=6.9
+							}
+							if ((race==2) || (race==3))
+							{
+								krit_testosteron=41.03
+								krit_IFA=2.92
+							}
+						}
+						if (sum_physician_!=null)			
+						{
+							sum_physician=sum_physician_
+							if (sum_physician>4)
+								{
+									H=1
+								}
+						}
+						testosteron=0
+						testosteron_ng_dl=null
+						IFA=null
+						if (value_testosteron_!=null)			
+						{
+							testosteron=value_testosteron_/1000*3.467
+							testosteron_ng_dl=value_testosteron_/10
+							if (testosteron_ng_dl>krit_testosteron)
+							{
+								H=1
+							}
+						}
+						else
+						{
+							testosteron=null
+						}
+						if (value_shbg_!=null && testosteron!=null)
+						{
+							IFA=testosteron/value_shbg_*100
+							if (IFA>krit_IFA)
+							{
+								H=1
+							}
+						}
+						else
+						{
+							IFA=null
+						}
+						value_dheas=0
+						if (value_dheas_!=null)			
+						{
+							value_dheas=value_dheas_
+							if (value_dheas>355)
+							{
+								H=1
+							}
+						}
+						if (sum_physician_!=null && testosteron_ng_dl!=null && IFA!=null && value_dheas_!=null)
+						{
+							if (sum_physician<=4 && testosteron_ng_dl<=krit_testosteron && IFA<=krit_IFA && value_dheas<=355)
+							{
+								H=0
+							}
+						}
+						//****************************************************
+						PH=null
+						PCOS=null
+						if (OA!=null && H!=null && PCOM!=null)
+						{
+							if ( OA==1 && H==1 && PCOM==1)
+							{
+								PH="A"
+							}
+							if ( OA==1 && H==1 && PCOM==0)
+							{
+								PH="B"
+							}
+							if ( OA==0 && H==1 && PCOM==1)
+							{
+								PH="C"
+							}
+							if ( OA==1 && H==0 && PCOM==1)
+							{
+								PH="D"
+							}
+							if ( OA==0 && H==0 && PCOM==0)
+							{
+								PCOS=0
+							}
+						}
+						if (OA==null) {OA_=0} else {OA_=OA}
+						if (H==null)  {H_=0}  else {H_=H}
+						if (PCOM==null) {PCOM_=0} else { if (PCOM==1) {PCOM_=1} else {PCOM_=0}}
+						if (OA_+H_+PCOM_==2 && PH==null) {PH=0}
+						if (PH!=null) {PCOS=1}
+						//*****************************************************
+						F_PCOS=null
+						F_Phenotype=null
+						ex=null
+						grey=null
+						if (value_tsh_!=null)	
+						{
+							tsh=value_tsh_
+							if (tsh>4)
+							{
+								ex=1
+							}
+						}
+						if (day_mens_prl_==null && value_17hp_!=null && value_prl_!=null)
+						{
+							if (value_prl_>726)
+							{
+								ex=1
+							}
+						}
+						if (ex==null)
+						{
+							if (day_mens_prl_!=null)
+							{	
+								day_mens_prl=day_mens_prl_
+								if (day_mens_prl<=9)
+								{
+									if (value_17hp_!=null)
+									{
+										if (value_17hp_>6.9)
+										{
+											ex=1
+										}
+									}
+									if (value_prl_!=null)
+									{
+										if (value_prl_>726)
+										{
+											ex=1
+										}
+									}
+								}
+								else
+								{							
+									if (value_prl_!=null)
+									{
+										if (value_prl_>944)
+										{
+											ex=1
+										}
+									}
+								}	
+							}
+							if (day_mens_prl_!=null && value_17hp_!=null && value_prl_!=null && value_tsh_!=null)
+							{
+								if (value_tsh_<=4)
+								{
+									if (day_mens_prl_<=9)
+									{
+										if (value_17hp_<=6.9 && value_prl_<=726)
+										{
+											ex=0
+										}
+									}
+									else
+									{
+										if (value_prl_<944)
+										{
+											ex=0
+										}
+									}
+								}
+							}
+						}
+					
+						if (ex!=null)
+						{
+							if (ex==1)
+							{
+								F_PCOS=null
+								F_Phenotype=null
+							}
+							if (ex==0)
+							{
+								F_PCOS=PCOS
+								F_Phenotype=PH
+							}
+						}
+						else
+						{
+							F_PCOS=null
+							F_Phenotype=null
+						}
+						if (OA_+H_+PCOM_==1)
+						{	
+							grey=1
+						}
+				}	//included
+			rez_text=" PCOS="+F_PCOS+" PHENOTYPE="+F_Phenotype+" grey="+grey+" exclusion="+ex+" OA="+OA+" H="+H+" PCOM="+PCOM
+			if (add_text!="") {rez_text=rez_text+" Доп.:"+add_text}   
+	      theResult.innerHTML=rez_text
+	    if (F_PCOS==null){
+	    	document.getElementById('id_PCOS').value=999
+	    }
+
+	    else{
+	    	document.getElementById('id_PCOS').value=F_PCOS
+	    }
+	    if (ex==null){
+	    	document.getElementById('id_Exclusion').value=999
+	    }
+	    else{
+	    	document.getElementById('id_Exclusion').value=ex
+	    }		
+	    	document.getElementById('id_Grey').value=grey
+	    	document.getElementById('id_Phenotype').value=F_Phenotype
+	    	document.getElementById('id_PCOS_text').value=rez_text
+	    	document.getElementById('id_Exclusion_text').value="Exclusion_text"
+	  
+	    }  //success       
+		
+	})
+}
+</script>
+
+</body>

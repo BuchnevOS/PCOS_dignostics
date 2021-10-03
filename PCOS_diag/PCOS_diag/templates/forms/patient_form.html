@@ -1,0 +1,91 @@
+<!{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="{% static 'css/style_form.css' %}" /> 
+</head>	
+<body>
+
+<div class="draw_field">
+<table class="table_" style="display:table;">
+	<tr class="sheet_name" > 
+		<td colspan="2"> 
+			{%if new is 1 %}				
+			<img src={% static 'img/pencil.png' %}> Editing new record 
+			
+			{% else %}
+			<img src={% static 'img/pencil.png' %}> Editing existing record ID {{form.instance.id}} 
+			{%  endif  %}
+		</td>
+	</tr>
+	<tr class="table_string">
+		<td class="table_string_left"> <a> Record ID </a> </td>
+		<td class="table_string_right"> <label> {{form.instance.id}} </label> </td>
+	</tr>
+	<tr class="table_name" > 
+		<td colspan="2"> <a> ПАЦИЕНТ </a></td>
+	</tr>
+	<form  method="post" >
+			{%csrf_token%}
+			<tr class="table_string"> 
+				<td class="table_string_left"><a> ФИО пациента</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.name_patient}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Дата рождения</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.day_of_birth}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Ethnicity</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.ethnicity_key}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_name" > 
+				<td colspan="2"> <a>Form status</a> </td>
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a></a> 
+				</td>	
+				<td class="table_string_right"><input type="submit" >
+				</td>
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a></a> 
+				</td>		
+				<td class="table_string_right">	<button type="cancel" style="width:80px" onclick="window.location='/patients_list';return false;">--Cancel--</button>
+				</td>	
+			</tr>
+				<tr class="table_string"> 
+				<td class="table_string_left"><a></a> 
+				</td>	
+				<td class="table_string_right">
+					<input type="button" method="GET" onclick="CheckPCOS(1,4)" style="width:85px" value="Анализ">
+				</td>
+			</tr>
+			
+	</form>
+	
+</table>
+
+</div>
+<script>	
+function CheckPCOS(patient_key, visit_key) 
+  {	
+ $.ajax({  
+ 	url: "/execute_query",
+ 	type: "GET", 
+ 	data: {'patient_key' : patient_key, 
+          'visit_key' : visit_key },
+ 	success: function(result){
+ 		alert(result.ethnicity)}
+ })
+}
+ </script>
+
+</body>

@@ -1,0 +1,110 @@
+<!{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> Диагностика СПКЯ </title>
+	<link rel="stylesheet" href="{% static 'css/style_db.css' %}" /> 
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"/>
+  
+	<script type="text/javascript" charset="utf8" src="{% static 'datatables/jquery-3.5.1.js' %}"></script>
+	<script type="text/javascript" charset="utf8" src="{% static 'datatables/jquery.dataTables.min.js' %}"></script>
+</head>
+<body>
+	
+	<nav class="left__side"> 
+		<ul class="tables__navigation">
+			<li> 
+				<a href="patients_list"  class="root__item">Список пациентов</a>
+			</li>
+			<li> 
+				<a href="visits_list" class="root__item">Список визитов</a>
+			</li>
+			<li> 
+				<a href="appointments_list"  class="root__item">Список приемов</a>
+			</li>
+			<li> 
+				<a href="ultrasounds_list"  class="root__item">Список исследований УЗИ</a>
+			</li>
+			<li> 
+				<a href="laboratory_results_list"   class="root__item__selected">Список результатов анализов</a>
+			</li>
+
+		</ul>
+	</nav>
+	<div class="right__side">
+		<span> Пользователь: {{request.user}}</span>
+		<span> <a href="logout_user">Выйти</a></span>
+		<br>
+		<div class="head__table">
+			Список результатов анализов
+		</div>
+		<div class="content__table">
+			
+			<form action="add_laboratory" class="add_btn" >
+    			<input type="submit" style="height:25px" value="Добавить запись" />
+			</form>
+			{% if laboratory_results_list_%}
+			<table id="table_id5" class="display" style="width:100%">
+			<thead>
+				<tr>
+					<th> id</th>
+					<th> ФИО пациента</th> 
+					<th> Визит</th> 
+					<th> Дата</th>
+					<th></th>
+				</tr>
+			</thead>
+				
+				<tbody>
+					{%for a in laboratory_results_list_ %}
+						<tr>
+							<td > {{a.id}}</td>
+							<td > {{a.patient_key}} </td>
+							<td > {{a.visit_key}} </td>
+							<td > {{a.date}}</td>
+							<td></td>
+						</tr>
+					{% endfor %}
+				</tbody>	
+		</table>
+		{% endif %}
+		</div>	
+	</div>
+<script type = "text/javascript">
+     $(document).ready( function () {	
+    var table = $('#table_id5').DataTable( {
+    		"lengthMenu": [[10, 25, 50, 100, 200, -1], [10, 25, 50, 100, 200, "All"]],
+    		pageLength: 50,
+			"columnDefs": [
+			{"targets":0,
+			"ordered":true} ,
+			{"targets": 3,
+			"sorting" : false
+		},
+			{
+            "targets": 4,
+            "sorting" : false,
+             render: function (data, type, row, meta) {
+            return '<input type="button" class="edit"  value="Edit"/>';}		}] 
+    } );
+ 
+    $('#table_id5 tbody').on( 'click', '.edit', function () {
+        var  id= table.row( $(this).parents('tr') ).data()[0];
+  		location.href = 'update_laboratory/'+id;
+    } );
+} );
+</script>
+
+
+</body>
+</html>
+
+	
+		
+		
+
+		
+
+	
+		

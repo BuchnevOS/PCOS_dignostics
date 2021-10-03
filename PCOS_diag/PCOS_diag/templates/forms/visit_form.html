@@ -1,0 +1,179 @@
+<!{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="{% static 'css/style_form.css' %}" /> 
+</head>	
+<body>
+
+<div class="draw_field">
+<table class="table_" style="display:table;">
+	<tr class="sheet_name" > 
+		<td colspan="2"> 
+			{%if new is 1 %}				
+			<img src={% static 'img/pencil.png' %}> Editing new record 
+			
+			{% else %}
+			<img src={% static 'img/pencil.png' %}> Editing existing record ID {{form.instance.id}} 
+			{%  endif  %}
+		</td>
+	</tr>
+	<tr class="table_string">
+		<td class="table_string_left"> <a> Record ID </a> </td>
+		<td class="table_string_right"> <label> {{form.instance.id}} </label> </td>
+	</tr>
+	<tr class="table_name" > 
+		<td colspan="2"> <a> ПРИЕМ </a></td>
+	</tr>
+	<form  method="post" >
+			{%csrf_token%}
+			<tr class="table_string"> 
+				<td class="table_string_left"><a> Наименование визита</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.name_visit}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a> ФИО пациента</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.patient_key}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a> ФИО доктора</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.doctor_key}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a> Дата визита</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.date}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Возраст</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.age_visit}}</a> 
+				</td>	
+			</tr>
+		
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>inform_consent</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.inform_consent}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>comply_all_study</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.comply_all_study}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>female_age</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.female_age}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>current_preg_lact</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.current_preg_lact}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>history_hysterectomy</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.history_hysterectomy}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>risk_no_compliance</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.risk_no_compliance}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>unwillingness</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.unwillingness}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>medicince_listed_now_10</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.medicince_listed_now_10}}</a> 
+				</td>	
+			</tr>
+
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>medicince_listed_3month_10</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.medicince_listed_3month_10}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>PCOS</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.PCOS}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Exclusion</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.Exclusion}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Grey</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.Grey}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Phenotype</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.Phenotype}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>PCOS_text</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.PCOS_text}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Exclusion_text</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.Exclusion_text}}</a> 
+				</td>	
+			</tr>
+
+
+			<tr class="table_name" > 
+				<td colspan="2"> <a>Form status</a> </td>
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a></a> 
+				</td>	
+				<td class="table_string_right"><input type="submit" >
+				</td>
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a></a> 
+				</td>
+			
+				<td class="table_string_right">	<button type="cancel" style="width:80px" onclick="window.location='/visits_list';return false;">--Cancel--</button>
+				</td>
+					
+			</tr>
+			
+	</form>
+	
+</table>
+
+</div>
+
+</body>

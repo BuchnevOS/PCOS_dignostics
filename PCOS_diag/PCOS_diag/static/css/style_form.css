@@ -1,0 +1,143 @@
+
+body {
+    font-family: "Helvetica Neue",Helvetica,"Helvetica Neue",Helvetica,Arial, Verdana,sans-serif;
+    font-size: 12px;
+    -webkit-text-size-adjust: none;
+    color: #000000;
+    line-height: normal;
+    background-color: #fff;
+}
+.draw_field{
+    background: #F3F3F3;
+    width: 60%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.table_{
+    border: 1px solid #DDDDDD;
+    padding: 0;
+    background: #F3F3F3;
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+.table_string{
+    display: table-row;
+    border: 1px solid #DDDDDD; 
+}
+
+.table_string_left{
+    font-size: 14px;
+    padding: 2px;
+    font-weight: bold;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 50%;\
+    
+   
+}
+
+.table_string_right{
+    position: static;
+    display: table-cell;
+    float: none;
+    width: 50%;
+    font-size: 16px; 
+}
+
+.table_name{
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 14px;
+    display: table-row;
+    background: #FFFFE0;
+    text-align: Left;
+    font-weight: bold;
+    border: 1px solid #CCCCCC;
+
+}
+.sheet_name{
+    font: normal 13px "Helvetica Neue",Helvetica,Arial, Helvetica, sans-serif;
+    padding: 6px;
+    border: 1px solid #A7C3F1;
+    color: #000066;
+    max-width: 800px;
+    background-color: #E2EAFA;
+}
+.result{
+    color: red;
+    text-shadow: #FC0 1px 0 10px;
+    font-weight: normal;
+}
+
+.content__table{
+    height:  98%;
+}
+#id_name_patient, #id_patient_key, #id_doctor_key, #id_name_visit, #id_age_visit,
+#id_visit_key{
+    width: 300px;
+    font-size: 16px;
+}
+#id_periods,#id_type_menstual_disorders_1,#id_type_menstual_disorders_2,#id_type_menstual_disorders_3,#id_type_menstual_disorders_4{
+    width: 300px;
+    font-size: 16px;
+}
+#id_min_menstrual, #id_max_menstrual, #id_sum_physician{
+    width: 300px;
+    font-size: 16px;
+}
+#id_right_ovary_volume, #id_right_ovary_follicle, #id_diameter_cyst_right, 
+#id_left_ovary_volume, #id_left_ovary_follicle, #id_diameter_cyst_left,
+#id_day_mens_prl, #id_value_testosteron, #id_value_testosteron_unit_key, 
+#id_value_shbg, #id_value_shbg_unit_key, #id_value_dheas, #id_value_dheas_unit_key, 
+#id_value_tsh, #id_value_tsh_unit_key, #id_value_17hp, #id_value_17hp_unit_key, 
+#id_value_prl, #id_value_prl_unit_key, #id_left_ovary_key, #id_right_ovary_key, 
+#id_left_ovary_front, #id_right_ovary_front, #id_left_ovary_posterior, #id_right_ovary_posterior,
+#id_left_ovary_side, #id_right_ovary_side {
+    width: 300px;
+    font-size: 16px;
+}
+#id_laboratory_test_name_key, #id_value, #id_unit_key{
+    width: 300px;
+    font-size: 16px;
+}
+#id_day_of_birth, #id_date{
+    width: 300px;
+    font-size: 16px;
+}
+#id_inform_consent{
+    width: 300px;
+    height: 100px;
+    font-size: 16px;
+}
+#id_comply_all_study{
+    width: 300px;
+    height: 100px;
+    font-size: 16px;
+}
+
+#id_ethnicity_key{
+    width: 300px;
+    font-size: 16px;
+    
+}
+#id_inform_consent, #id_comply_all_study, #id_female_age, #id_current_preg_lact, 
+#id_history_hysterectomy, #id_risk_no_compliance, #id_unwillingness, #id_medicince_listed_now_10, 
+#id_medicince_listed_3month_10{
+    width: 300px;
+    font-size: 16px;
+    list-style-type: none;
+    margin: 0;
+    padding-left: 5px
+}
+
+
+#id_history_hysterectomy{
+    width: 300px;
+    font-size: 16px;
+    list-style-type: none;
+    margin: 0;
+    padding-left: 5px;
+}

@@ -1,0 +1,347 @@
+<!{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="{% static 'css/style_full_form.css' %}" />
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"/>
+	<script type="text/javascript" charset="utf8" src="{% static 'datatables/jquery-3.5.1.js' %}"></script>
+	<script type="text/javascript" charset="utf8" src="{% static 'datatables/jquery.dataTables.min.js' %}"></script> 
+</head>	
+<body>
+
+<div class="draw_field">
+<table class="table_" style="display:table;">
+	<tr class="sheet_name" > 
+		<td colspan="2"> 
+			<img src={% static 'img/pencil.png' %}> Editing existing record ID {{form.instance.id}} 
+		</td>
+	</tr>
+	<tr class="table_string">
+		<td class="table_string_left"> <a> Record ID </a> </td>
+		<td class="table_string_right"> <label> {{form.instance.id}} </label> </td>
+	</tr>
+	<tr class="table_name" > 
+		<td colspan="2"> <a> ПАЦИЕНТ </a></td>
+	</tr>
+	<form  method="post" >
+			{%csrf_token%}
+			<tr class="table_string"> 
+				<td class="table_string_left"><a> ФИО пациента</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.name_patient}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Дата рождения</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.day_of_birth}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Ethnicity</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.ethnicity_key}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a></a> 
+				</td>	
+				<td class="table_string_right"><input type="submit" value="Сохранить">
+				</td>
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a></a> 
+				</td>		
+				<td class="table_string_right">	<button type="cancel" style="width:80px" onclick="window.location='/patients_list';return false;">--Cancel--</button>
+				</td>	
+			</tr>
+			<!--*****************************************-->
+			<tr class="table_name" > 
+				<td colspan="2"> <a>СПИСОК ВИЗИТОВ</a> </td>
+			</tr>
+			<tr class="table_string" > 
+				<td colspan="2"> 
+    					<button type="button" style="position: relative;left: 88%;height:25px;margin-bottom: 10px;margin-top: 10px;"  onclick="window.location='/add_visit_full/'+{{form.instance.id}} ;">Добавить запись</button>
+
+					<table id="table_id2" class="display" style="width:100%">
+						<thead>
+							<tr>
+								<th> id</th>
+								<th> Наимен визита</th>
+								<th> Код врача</th>
+								<th> Дата приема</th>
+								<th> age_ visit</th>
+								<th >inf_ cons</th>
+								<th >compl_ all_ study</th>
+								<th >cur_ pr_ l</th>
+								<th >hist_ hysterect</th>
+								<th >risk_ no_ compl</th>
+								<th >unwill</th>
+								<th >med_ list_ now</th>
+								<th >med_ list_ 3month</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							{% if visits_%}
+							{%for a in visits_ %}
+							<tr>
+								<td > {{a.id}}</td>
+								<td > {{a.name_visit}}</td>
+								<td > {{a.doctor_key}}</td>
+								<td > {{a.date}}</td>
+								<td > {{a.age_visit}}</td>
+								<td > {{a.inform_consent}}</td>
+								<td > {{a.comply_all_study}}</td>
+								<td > {{a.current_preg_lact}}</td>
+								<td > {{a.history_hysterectomy}}</td>
+								<td > {{a.risk_no_compliance}}</td>
+								<td > {{a.unwillingness}}</td>
+								<td > {{a.medicince_listed_now_10}}</td>
+								<td > {{a.medicince_listed_3month_10}}</td>
+								<td></td>
+							</tr>
+							{% endfor %}
+							{% endif %}	
+						</tbody>
+					</table>
+				
+				</td> 
+			</tr>	
+			<script type = "text/javascript">
+     			$(document).ready( function () {	
+   				 var table = $('#table_id2').DataTable( {
+    		"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+    		pageLength: 10,
+			"columnDefs": [
+			{"targets":0,
+			"ordered":true} ,
+			{"targets": 3,
+			"sorting" : false
+						},
+			{"targets": 13,
+			"sorting" : false,
+             render: function (data, type, row, meta) {
+            return '<input type="button" class="edit"  value="Edit"/>';}}] 
+   													 } );
+    		$('#table_id2 tbody').on( 'click', '.edit', function () {
+        		var  id= table.row( $(this).parents('tr') ).data()[0];
+  				location.href = '/update_visit_full/'+id+"/"+{{form.instance.id}};} );
+			} );
+			</script>
+			<!--*****************************************-->
+			<tr class="table_name" > 
+				<td colspan="2"> <a>СПИСОК ПРИЕМОВ</a> </td>
+			</tr>
+			<tr class="table_string" > 
+				<td colspan="2"> 
+    					<button type="button" style="position: relative;left: 88%;height:25px;margin-bottom: 10px;margin-top: 10px;"  onclick="window.location='/add_appointment_full/'+{{form.instance.id}} ;">Добавить запись</button>
+
+					<table id="table_id3" class="display" style="width:100%">
+						<thead>
+							<tr>
+								<th >id</th> 
+								<th >Визит</th> 
+								<th >Код врача</th>
+								<th >Дата приема</th>
+								<th >Periods</th>
+								<th >type men dis_1</th>
+								<th >type men dis_2</th>
+								<th >type men dis_3</th>
+								<th >type men dis_4</th>
+								<th >min men</th>
+								<th >max men</th>
+								<th >sum phys</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							{% if appointments_%}
+							{%for a in appointments_ %}
+							<tr>
+								<td > {{a.id}} </td>
+								<td > {{a.visit_key}} </td>
+								<td > {{a.doctor_key}}</td>
+								<td > {{a.date}}</td>
+								<td > {{a.periods}}</td>
+								<td > {{a.type_menstual_disorders_1}}</td>
+								<td > {{a.type_menstual_disorders_2}}</td>
+								<td > {{a.type_menstual_disorders_3}}</td>
+								<td > {{a.type_menstual_disorders_4}}</td>
+								<td > {{a.min_menstrual}}</td>
+								<td > {{a.max_menstrual}}</td>
+								<td > {{a.sum_physician}}</td>
+								<td></td>
+							</tr>
+							{% endfor %}
+							{% endif %}	
+						</tbody>
+					</table>
+				
+				</td> 
+			</tr>	
+			<script type = "text/javascript">
+     			$(document).ready( function () {	
+   				 var table = $('#table_id3').DataTable( {
+    		"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+    		pageLength: 10,
+			"columnDefs": [
+			{"targets":0,
+			"ordered":true} ,
+			{"targets": 3,
+			"sorting" : false
+						},
+			{"targets": 12,
+			"sorting" : false,
+             render: function (data, type, row, meta) {
+            return '<input type="button" class="edit"  value="Edit"/>';}}] 
+   													 } );
+    		$('#table_id3 tbody').on( 'click', '.edit', function () {
+        		var  id= table.row( $(this).parents('tr') ).data()[0];
+  				location.href = '/update_appointment_full/'+id+"/"+{{form.instance.id}};} );
+			} );
+			</script>
+			<!--*****************************************-->
+			<tr class="table_name" > 
+				<td colspan="2"> <a>СПИСОК ИССЛЕДОВАНИЙ УЗИ</a> </td>
+			</tr>
+			<tr class="table_string" > 
+				<td colspan="2"> 
+    				<button type="button" style="position: relative;left: 88%;height:25px;margin-bottom: 10px;margin-top: 10px;"  onclick="window.location='/add_ultrasound_full/'+{{form.instance.id}} ;">Добавить запись</button>
+					<table id="table_id4" class="display" style="width:100%">
+						<thead>
+							<tr>
+								<th>id</th>
+								<th>Визит</th>
+								<th> Код врача</th>
+								<th> Дата</th>
+								<th> right ov vol</th>
+								<th >right ov fol</th>
+								<th >diam cyst right</th>
+								<th >left ov vol</th>
+								<th >left ov fol</th>
+								<th >diam cyst left</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							{% if ultrasounds_%}
+							{%for a in ultrasounds_ %}
+								<tr>
+									<td > {{a.id}}</td>
+									<td > {{a.visit_key}} </td>
+									<td > {{a.doctor_key}}</td>
+									<td > {{a.date}}</td>
+									<td > {{a.right_ovary_volume}}</td>
+									<td > {{a.right_ovary_follicle}}</td>
+									<td > {{a.diameter_cyst_right}}</td>
+									<td > {{a.left_ovary_volume}}</td>
+									<td > {{a.left_ovary_follicle}}</td>
+									<td > {{a.diameter_cyst_left}}</td>
+									<td></td>
+								</tr>
+							{% endfor %}
+							{% endif %}
+						</tbody>
+					</table>
+					
+				</td> 
+			</tr>	
+			<script type = "text/javascript">
+			     $(document).ready( function () {	
+			    var table = $('#table_id4').DataTable( {
+			    		"lengthMenu": [[10, 25, 50, -1], [10, 25, 50,  "All"]],
+			    		pageLength: 10,
+						"columnDefs": [
+						{"targets":0,
+						"ordered":true} ,
+						{"targets": 3,
+						"sorting" : false
+					},
+						{
+			            "targets": 10,
+			            "sorting" : false,
+			             render: function (data, type, row, meta) {
+			            return '<input type="button" class="edit"  value="Edit"/>';}    } ]
+			        });
+			    $('#table_id4 tbody').on( 'click', '.edit', function () {
+			        var  id= table.row( $(this).parents('tr') ).data()[0];
+			  		location.href = '/update_ultrasound_full/'+id+"/"+{{form.instance.id}};} );
+			    } );
+			</script>
+			<!--*****************************************-->
+			<tr class="table_name" > 
+				<td colspan="2"> <a>СПИСОК АНАЛИЗОВ</a> </td>
+			</tr>
+			<tr class="table_string" > 
+				<td colspan="2"> 
+    				<button type="button" style="position: relative;left: 88%;height:25px;margin-bottom: 10px;margin-top: 10px;"  onclick="window.location='/add_laboratory_full/'+{{form.instance.id}} ;">Добавить запись</button>
+				
+					<table id="table_id5" class="display" style="width:100%">
+						<thead>
+							<tr>
+								<th> id</th>
+								<th> Визит</th>
+								<th> Дата</th>
+								<th> testosteron</th>
+								<th> shbg</th>
+								<th> dheas</th>
+								<th> tsh</th>
+								<th> 17hp</th>
+								<th> prl</th>
+								<th></th>
+							</tr>
+						</thead>
+							
+						<tbody>
+							{% if laboratory_results_list_%}
+							{%for a in laboratory_results_list_ %}
+							<tr>
+								<td > {{a.id}}</td>
+								<td > {{a.visit_key}} </td>
+								<td > {{a.date}}</td>
+								<td > {{a.value_testosteron}}</td>
+								<td > {{a.value_shbg}}</td>
+								<td > {{a.value_dheas}}</td>
+								<td > {{a.value_tsh}}</td>
+								<td > {{a.value_17hp}}</td>
+								<td > {{a.value_prl}}</td>
+								<td></td>
+							</tr>
+							{% endfor %}
+							{% endif %}
+						</tbody>	
+					</table>
+					
+				</td> 
+			</tr>	
+			<script type = "text/javascript">
+			     $(document).ready( function () {	
+			    var table = $('#table_id5').DataTable( {
+			    		"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+			    		pageLength: 10,
+						"columnDefs": [
+						{"targets":0,
+						"ordered":true} ,
+						{"targets": 2,
+						"sorting" : false
+					},
+						{
+			            "targets": 9,
+			            "sorting" : false,
+			             render: function (data, type, row, meta) {
+			            return '<input type="button" class="edit"  value="Edit"/>';}		}] 
+			    } );
+			 
+			    $('#table_id5 tbody').on( 'click', '.edit', function () {
+			        var  id= table.row( $(this).parents('tr') ).data()[0];
+			  		location.href = '/update_laboratory_full/'+id+"/"+{{form.instance.id}};} );
+			    } );
+			</script>	
+
+	</form>
+</table>
+
+</div>
+</body>

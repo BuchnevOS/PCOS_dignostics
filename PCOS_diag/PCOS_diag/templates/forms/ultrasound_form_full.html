@@ -1,0 +1,168 @@
+<!{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="{% static 'css/style_form.css' %}" /> 
+</head>	
+<body>
+
+<div class="draw_field">
+<table class="table_" style="display:table;">
+	<tr class="sheet_name" > 
+		<td colspan="2"> 
+			{%if new is 1 %}				
+			<img src={% static 'img/pencil.png' %}> Editing new record 
+			
+			{% else %}
+			<img src={% static 'img/pencil.png' %}> Editing existing record ID {{form.instance.id}} 
+			{%  endif  %}
+		</td>
+	</tr>
+	<tr class="table_string">
+		<td class="table_string_left"> <a> Record ID </a> </td>
+		<td class="table_string_right"> <label> {{form.instance.id}} </label> </td>
+	</tr>
+	<tr class="table_name" > 
+		<td colspan="2"> <a> УЛЬТРАЗВУКОВОЕ ИССЛЕДОВАНИЕ </a></td>
+	</tr>
+	<form  method="post" >
+			{%csrf_token%}
+			<tr class="table_string"> 
+				<td class="table_string_left"><a> ФИО пациента</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.patient_key}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a> Визит</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.visit_key}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>ФИО доктора</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.doctor_key}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a> Дата приема</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.date}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Правый яичник</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.right_ovary_key}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Передний размер правого яичника</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.right_ovary_front}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Задний размер правого яичника</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.right_ovary_posterior}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Боковой размер правого яичника</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.right_ovary_side}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Объем правого ичника</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.right_ovary_volume}}</a> 
+				</td>	
+			</tr>
+		
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>right_ovary_follicle</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.right_ovary_follicle}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>diameter_cyst_right</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.diameter_cyst_right}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Левый яичник</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.left_ovary_key}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Передний размер левого яичника</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.left_ovary_front}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Задний размер левого яичника</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.left_ovary_posterior}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Боковой размер левого яичника</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.left_ovary_side}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Объем левого ичника</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.left_ovary_volume}}</a> 
+				</td>	
+			</tr>
+		
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>left_ovary_volume</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.left_ovary_volume}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>left_ovary_follicle</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.left_ovary_follicle}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>diameter_cyst_left</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.diameter_cyst_left}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_name" > 
+				<td colspan="2"> <a>Form status</a> </td>
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a></a> 
+				</td>	
+				<td class="table_string_right"><input type="submit" >
+				</td>
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a></a> 
+				</td>		
+				<td class="table_string_right">	<button type="cancel" style="width:80px" onclick="window.location='/view_full/'+{{patient_key}};return false;">--Cancel--</button>
+				</td>
+			</tr>
+			
+	</form>
+	
+</table>
+
+</div>
+</body>

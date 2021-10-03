@@ -1,0 +1,150 @@
+<!{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="{% static 'css/style_form.css' %}" /> 
+</head>	
+<body>
+
+<div class="draw_field">
+<table class="table_" style="display:table;">
+	<tr class="sheet_name" > 
+		<td colspan="2"> 
+			{%if new is 1 %}				
+			<img src={% static 'img/pencil.png' %}> Editing new record 
+			
+			{% else %}
+			<img src={% static 'img/pencil.png' %}> Editing existing record ID {{form.instance.id}} 
+			{%  endif  %}
+		</td>
+	</tr>
+	<tr class="table_string">
+		<td class="table_string_left"> <a> Record ID </a> </td>
+		<td class="table_string_right"> <label> {{form.instance.id}} </label> </td>
+	</tr>
+	<tr class="table_name" > 
+		<td colspan="2"> <a> РЕЗУЛЬТАТЫ ЛАБОРАТОРНЫХ АНАЛИЗОВ </a></td>
+	</tr>
+	<form  method="post" >
+			{%csrf_token%}
+			<tr class="table_string"> 
+				<td class="table_string_left"><a> ФИО пациента</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.patient_key}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a> Визит</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.visit_key}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>Дата анализа</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.date}}</a> 
+				</td>	
+			</tr>
+			</tr>
+				<tr class="table_string"> 
+				<td class="table_string_left"><a>day_mens_prl</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.day_mens_prl}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>value_testosteron</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.value_testosteron}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>value_testosteron_unit_key</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.value_testosteron_unit_key}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>value_shbg</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.value_shbg}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>value_shbg_unit_key</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.value_shbg_unit_key}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>value_dheas</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.value_dheas}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>value_dheas_unit_key</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.value_dheas_unit_key}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>value_tsh</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.value_tsh}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>value_tsh_unit_key</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.value_tsh_unit_key}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>value_17hp</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.value_17hp}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>value_17hp_unit_key</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.value_17hp_unit_key}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>value_prl</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.value_prl}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>value_prl_unit_key</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.value_prl_unit_key}}</a> 
+				</td>	
+			</tr>
+		
+			<tr class="table_name" > 
+				<td colspan="2"> <a>Form status</a> </td>
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a></a> 
+				</td>	
+				<td class="table_string_right"><input type="submit" >
+				</td>
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a></a> 
+				</td>		
+				<td class="table_string_right">	<button type="cancel" style="width:80px" onclick="window.location='/view_full/'+{{patient_key}};return false;">--Cancel--</button>
+				</td>
+			</tr>
+			
+	</form>
+	
+</table>
+
+</div>
+</body>

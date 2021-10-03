@@ -1,0 +1,130 @@
+<!{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="{% static 'css/style_form.css' %}" /> 
+</head>	
+<body>
+
+<div class="draw_field">
+<table class="table_" style="display:table;">
+	<tr class="sheet_name" > 
+		<td colspan="2"> 
+			{%if new is 1 %}				
+			<img src={% static 'img/pencil.png' %}> Editing new record 
+			{% else %}
+			<img src={% static 'img/pencil.png' %}> Editing existing record ID {{form.instance.id}} 
+			{%  endif  %}
+		</td>
+	</tr>
+	<tr class="table_string">
+		<td class="table_string_left"> <a> Record ID </a> </td>
+		<td class="table_string_right"> <label> {{form.instance.id}} </label> </td>
+	</tr>
+	<tr class="table_name" > 
+		<td colspan="2"> <a> ПРИЕМ </a></td>
+	</tr>
+	
+	<form  method="post" >
+			{%csrf_token%}
+			<tr class="table_string"> 
+				<td class="table_string_left"><a> ФИО пациента</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.patient_key}}</a> 
+				</td>	
+				
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a> Визит</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.visit_key}}</a> 
+				</td>	
+				
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>ФИО доктора</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.doctor_key}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a> Дата приема</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.date}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>periods</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.periods}}</a> 
+				</td>	
+			</tr>
+		
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>type_menstual_disorders_1</a> 
+				</td>	
+				<td class="table_string_right"><a> {{form.type_menstual_disorders_1}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>type_menstual_disorders_2</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.type_menstual_disorders_2}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>type_menstual_disorders_3</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.type_menstual_disorders_3}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>type_menstual_disorders_4</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.type_menstual_disorders_4}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>min_menstrual</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.min_menstrual}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>max_menstrual</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.max_menstrual}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a>sum_physician</a> 
+				</td>	
+				<td class="table_string_right"><a>{{form.sum_physician}}</a> 
+				</td>	
+			</tr>
+			<tr class="table_name" > 
+				<td colspan="2"> <a>Form status</a> </td>
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a></a> 
+				</td>	
+				<td class="table_string_right"><input type="submit" >
+				</td>
+			</tr>
+			<tr class="table_string"> 
+				<td class="table_string_left"><a></a> 
+				</td>
+			
+				<td class="table_string_right">	<button type="cancel" style="width:80px" onclick="window.location='/view_full/'+{{patient_key}};return false;">--Cancel--</button>
+				</td>
+					
+			</tr>
+			
+	</form>
+	
+</table>
+
+</div>
+
+</body>

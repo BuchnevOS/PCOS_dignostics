@@ -1,0 +1,46 @@
+<!{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> Диагностика СПКЯ </title>
+	<link rel="stylesheet" href="{% static 'css/style_index.css' %}" /> 
+</head>
+<body>
+	<div class="inner">
+		<span class="header__subheading"> Федеральное государственное бюджетное научное учреждение</span> 
+		<a href="https://health-family.ru/ru/"  target="blank" class="header__logotype"> <img src={% static 'img/logo.png' %}></a> 
+	</div>
+	<nav id="menu"> 
+		<ul id="horizontal-multilevel-menu" class="main-navigation inner">
+			<li> 
+				<a href="/" class="root__item">Об СПКЯ</a>
+			</li>
+			<li> 
+				<a href="selfdiagnostics" class="root__item">Самодиагностика</a>
+			</li>
+			<li> 
+				<a href="contacts" class="root__item">Контакты</a>
+			</li>
+			<li> 
+				<a href="login_user" class="root__item__selected">Работа с данными</a>
+			</li>
+		</ul>
+	</nav>
+	<div class="content__sheet">
+		<div class="user_identification">
+			<form action="" method="POST">
+				{% csrf_token %}
+				<p><b>Ваше имя:</b><br>
+   			 	<input type="text" name="username" placeholder="Имя пользователя">
+  				</p>
+  				<p><b>Пароль:</b><br>
+   			 	<input type="password" name="password" placeholder="Пароль">
+  				</p>
+    			<input class="btn" type="submit"  value="Войти" />
+			</form>
+		</div>
+
+	</div>
+</body>
+</html>
